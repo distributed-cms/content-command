@@ -1,5 +1,4 @@
 # TODO create smarter script to accept arguments and if they are not set, then use following vars as defaults.
-export PUB_PORT=50001
-export REQ_PORT=50002
+export CMD_PORT=50000
 
-sudo docker run -p $PUB_PORT:5001 -p $REQ_PORT:5002 -d carlosvin/eventbus
+sudo docker run -p $CMD_PORT:5000 -d carlosvin/content-command
