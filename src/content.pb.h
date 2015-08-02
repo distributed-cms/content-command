@@ -26,8 +26,8 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "base.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace content {
@@ -37,160 +37,13 @@ void protobuf_AddDesc_content_2eproto();
 void protobuf_AssignDesc_content_2eproto();
 void protobuf_ShutdownFile_content_2eproto();
 
-class Uuid;
 class ContentData;
 class ContentPart;
 class Content;
 class CmdResponse;
 class UpdatePart;
 
-enum Format {
-  HTML = 0,
-  MD = 1,
-  RST = 2,
-  SRC = 3,
-  IMG = 4,
-  GIST = 5,
-  Format_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  Format_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
-};
-bool Format_IsValid(int value);
-const Format Format_MIN = HTML;
-const Format Format_MAX = GIST;
-const int Format_ARRAYSIZE = Format_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* Format_descriptor();
-inline const ::std::string& Format_Name(Format value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    Format_descriptor(), value);
-}
-inline bool Format_Parse(
-    const ::std::string& name, Format* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Format>(
-    Format_descriptor(), name, value);
-}
-enum Level {
-  DEBUG = 0,
-  INFO = 1,
-  WARN = 2,
-  ERROR = 3,
-  Level_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  Level_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
-};
-bool Level_IsValid(int value);
-const Level Level_MIN = DEBUG;
-const Level Level_MAX = ERROR;
-const int Level_ARRAYSIZE = Level_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* Level_descriptor();
-inline const ::std::string& Level_Name(Level value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    Level_descriptor(), value);
-}
-inline bool Level_Parse(
-    const ::std::string& name, Level* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Level>(
-    Level_descriptor(), name, value);
-}
 // ===================================================================
-
-class Uuid : public ::google::protobuf::Message {
- public:
-  Uuid();
-  virtual ~Uuid();
-
-  Uuid(const Uuid& from);
-
-  inline Uuid& operator=(const Uuid& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
-  inline void* GetMaybeArenaPointer() const {
-    return MaybeArenaPtr();
-  }
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const Uuid& default_instance();
-
-  void UnsafeArenaSwap(Uuid* other);
-  void Swap(Uuid* other);
-
-  // implements Message ----------------------------------------------
-
-  inline Uuid* New() const { return New(NULL); }
-
-  Uuid* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Uuid& from);
-  void MergeFrom(const Uuid& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  void InternalSwap(Uuid* other);
-  protected:
-  explicit Uuid(::google::protobuf::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
-  }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // optional sint64 least_significant_bits = 1;
-  inline void clear_least_significant_bits();
-  static const int kLeastSignificantBitsFieldNumber = 1;
-  inline ::google::protobuf::int64 least_significant_bits() const;
-  inline void set_least_significant_bits(::google::protobuf::int64 value);
-
-  // optional sint64 most_significant_bits = 2;
-  inline void clear_most_significant_bits();
-  static const int kMostSignificantBitsFieldNumber = 2;
-  inline ::google::protobuf::int64 most_significant_bits() const;
-  inline void set_most_significant_bits(::google::protobuf::int64 value);
-
-  // @@protoc_insertion_point(class_scope:content.Uuid)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  friend class ::google::protobuf::Arena;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  bool _is_default_instance_;
-  ::google::protobuf::int64 least_significant_bits_;
-  ::google::protobuf::int64 most_significant_bits_;
-  mutable int _cached_size_;
-  friend void  protobuf_AddDesc_content_2eproto();
-  friend void protobuf_AssignDesc_content_2eproto();
-  friend void protobuf_ShutdownFile_content_2eproto();
-
-  void InitAsDefaultInstance();
-  static Uuid* default_instance_;
-};
-// -------------------------------------------------------------------
 
 class ContentData : public ::google::protobuf::Message {
  public:
@@ -258,42 +111,48 @@ class ContentData : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional .content.Uuid id = 1;
-  inline bool has_id() const;
-  inline void clear_id();
+  // optional .common.Uuid id = 1;
+  bool has_id() const;
+  void clear_id();
   static const int kIdFieldNumber = 1;
-  inline const ::content::Uuid& id() const;
-  inline ::content::Uuid* mutable_id();
-  inline ::content::Uuid* release_id();
-  inline void set_allocated_id(::content::Uuid* id);
-  inline ::content::Uuid* unsafe_arena_release_id();
-  inline void unsafe_arena_set_allocated_id(
-      ::content::Uuid* id);
+  private:
+  void _slow_mutable_id();
+  void _slow_set_allocated_id(
+      ::google::protobuf::Arena* message_arena, ::common::Uuid** id);
+  ::common::Uuid* _slow_release_id();
+  public:
+  const ::common::Uuid& id() const;
+  ::common::Uuid* mutable_id();
+  ::common::Uuid* release_id();
+  void set_allocated_id(::common::Uuid* id);
+  ::common::Uuid* unsafe_arena_release_id();
+  void unsafe_arena_set_allocated_id(
+      ::common::Uuid* id);
 
   // optional string title = 2;
-  inline void clear_title();
+  void clear_title();
   static const int kTitleFieldNumber = 2;
-  inline const ::std::string& title() const;
-  inline void set_title(const ::std::string& value);
-  inline void set_title(const char* value);
-  inline void set_title(const char* value, size_t size);
-  inline ::std::string* mutable_title();
-  inline ::std::string* release_title();
-  inline void set_allocated_title(::std::string* title);
-  inline ::std::string* unsafe_arena_release_title();
-  inline void unsafe_arena_set_allocated_title(
+  const ::std::string& title() const;
+  void set_title(const ::std::string& value);
+  void set_title(const char* value);
+  void set_title(const char* value, size_t size);
+  ::std::string* mutable_title();
+  ::std::string* release_title();
+  void set_allocated_title(::std::string* title);
+  ::std::string* unsafe_arena_release_title();
+  void unsafe_arena_set_allocated_title(
       ::std::string* title);
 
-  // repeated .content.Uuid authors = 3;
-  inline int authors_size() const;
-  inline void clear_authors();
+  // repeated .common.Uuid authors = 3;
+  int authors_size() const;
+  void clear_authors();
   static const int kAuthorsFieldNumber = 3;
-  inline const ::content::Uuid& authors(int index) const;
-  inline ::content::Uuid* mutable_authors(int index);
-  inline ::content::Uuid* add_authors();
-  inline const ::google::protobuf::RepeatedPtrField< ::content::Uuid >&
+  const ::common::Uuid& authors(int index) const;
+  ::common::Uuid* mutable_authors(int index);
+  ::common::Uuid* add_authors();
+  const ::google::protobuf::RepeatedPtrField< ::common::Uuid >&
       authors() const;
-  inline ::google::protobuf::RepeatedPtrField< ::content::Uuid >*
+  ::google::protobuf::RepeatedPtrField< ::common::Uuid >*
       mutable_authors();
 
   // @@protoc_insertion_point(class_scope:content.ContentData)
@@ -304,9 +163,9 @@ class ContentData : public ::google::protobuf::Message {
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   bool _is_default_instance_;
-  ::content::Uuid* id_;
+  ::common::Uuid* id_;
   ::google::protobuf::internal::ArenaStringPtr title_;
-  ::google::protobuf::RepeatedPtrField< ::content::Uuid > authors_;
+  ::google::protobuf::RepeatedPtrField< ::common::Uuid > authors_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_content_2eproto();
   friend void protobuf_AssignDesc_content_2eproto();
@@ -384,35 +243,41 @@ class ContentPart : public ::google::protobuf::Message {
   // accessors -------------------------------------------------------
 
   // optional .content.ContentData info = 1;
-  inline bool has_info() const;
-  inline void clear_info();
+  bool has_info() const;
+  void clear_info();
   static const int kInfoFieldNumber = 1;
-  inline const ::content::ContentData& info() const;
-  inline ::content::ContentData* mutable_info();
-  inline ::content::ContentData* release_info();
-  inline void set_allocated_info(::content::ContentData* info);
-  inline ::content::ContentData* unsafe_arena_release_info();
-  inline void unsafe_arena_set_allocated_info(
+  private:
+  void _slow_mutable_info();
+  void _slow_set_allocated_info(
+      ::google::protobuf::Arena* message_arena, ::content::ContentData** info);
+  ::content::ContentData* _slow_release_info();
+  public:
+  const ::content::ContentData& info() const;
+  ::content::ContentData* mutable_info();
+  ::content::ContentData* release_info();
+  void set_allocated_info(::content::ContentData* info);
+  ::content::ContentData* unsafe_arena_release_info();
+  void unsafe_arena_set_allocated_info(
       ::content::ContentData* info);
 
-  // optional .content.Format format = 2;
-  inline void clear_format();
+  // optional .common.Format format = 2;
+  void clear_format();
   static const int kFormatFieldNumber = 2;
-  inline ::content::Format format() const;
-  inline void set_format(::content::Format value);
+  ::common::Format format() const;
+  void set_format(::common::Format value);
 
   // optional string data = 3;
-  inline void clear_data();
+  void clear_data();
   static const int kDataFieldNumber = 3;
-  inline const ::std::string& data() const;
-  inline void set_data(const ::std::string& value);
-  inline void set_data(const char* value);
-  inline void set_data(const char* value, size_t size);
-  inline ::std::string* mutable_data();
-  inline ::std::string* release_data();
-  inline void set_allocated_data(::std::string* data);
-  inline ::std::string* unsafe_arena_release_data();
-  inline void unsafe_arena_set_allocated_data(
+  const ::std::string& data() const;
+  void set_data(const ::std::string& value);
+  void set_data(const char* value);
+  void set_data(const char* value, size_t size);
+  ::std::string* mutable_data();
+  ::std::string* release_data();
+  void set_allocated_data(::std::string* data);
+  ::std::string* unsafe_arena_release_data();
+  void unsafe_arena_set_allocated_data(
       ::std::string* data);
 
   // @@protoc_insertion_point(class_scope:content.ContentPart)
@@ -503,27 +368,33 @@ class Content : public ::google::protobuf::Message {
   // accessors -------------------------------------------------------
 
   // optional .content.ContentData info = 1;
-  inline bool has_info() const;
-  inline void clear_info();
+  bool has_info() const;
+  void clear_info();
   static const int kInfoFieldNumber = 1;
-  inline const ::content::ContentData& info() const;
-  inline ::content::ContentData* mutable_info();
-  inline ::content::ContentData* release_info();
-  inline void set_allocated_info(::content::ContentData* info);
-  inline ::content::ContentData* unsafe_arena_release_info();
-  inline void unsafe_arena_set_allocated_info(
+  private:
+  void _slow_mutable_info();
+  void _slow_set_allocated_info(
+      ::google::protobuf::Arena* message_arena, ::content::ContentData** info);
+  ::content::ContentData* _slow_release_info();
+  public:
+  const ::content::ContentData& info() const;
+  ::content::ContentData* mutable_info();
+  ::content::ContentData* release_info();
+  void set_allocated_info(::content::ContentData* info);
+  ::content::ContentData* unsafe_arena_release_info();
+  void unsafe_arena_set_allocated_info(
       ::content::ContentData* info);
 
   // repeated .content.ContentPart parts = 2;
-  inline int parts_size() const;
-  inline void clear_parts();
+  int parts_size() const;
+  void clear_parts();
   static const int kPartsFieldNumber = 2;
-  inline const ::content::ContentPart& parts(int index) const;
-  inline ::content::ContentPart* mutable_parts(int index);
-  inline ::content::ContentPart* add_parts();
-  inline const ::google::protobuf::RepeatedPtrField< ::content::ContentPart >&
+  const ::content::ContentPart& parts(int index) const;
+  ::content::ContentPart* mutable_parts(int index);
+  ::content::ContentPart* add_parts();
+  const ::google::protobuf::RepeatedPtrField< ::content::ContentPart >&
       parts() const;
-  inline ::google::protobuf::RepeatedPtrField< ::content::ContentPart >*
+  ::google::protobuf::RepeatedPtrField< ::content::ContentPart >*
       mutable_parts();
 
   // @@protoc_insertion_point(class_scope:content.Content)
@@ -613,37 +484,37 @@ class CmdResponse : public ::google::protobuf::Message {
   // accessors -------------------------------------------------------
 
   // optional string path = 1;
-  inline void clear_path();
+  void clear_path();
   static const int kPathFieldNumber = 1;
-  inline const ::std::string& path() const;
-  inline void set_path(const ::std::string& value);
-  inline void set_path(const char* value);
-  inline void set_path(const char* value, size_t size);
-  inline ::std::string* mutable_path();
-  inline ::std::string* release_path();
-  inline void set_allocated_path(::std::string* path);
-  inline ::std::string* unsafe_arena_release_path();
-  inline void unsafe_arena_set_allocated_path(
+  const ::std::string& path() const;
+  void set_path(const ::std::string& value);
+  void set_path(const char* value);
+  void set_path(const char* value, size_t size);
+  ::std::string* mutable_path();
+  ::std::string* release_path();
+  void set_allocated_path(::std::string* path);
+  ::std::string* unsafe_arena_release_path();
+  void unsafe_arena_set_allocated_path(
       ::std::string* path);
 
-  // optional .content.Level level = 2;
-  inline void clear_level();
+  // optional .common.Level level = 2;
+  void clear_level();
   static const int kLevelFieldNumber = 2;
-  inline ::content::Level level() const;
-  inline void set_level(::content::Level value);
+  ::common::Level level() const;
+  void set_level(::common::Level value);
 
   // optional string msg = 3;
-  inline void clear_msg();
+  void clear_msg();
   static const int kMsgFieldNumber = 3;
-  inline const ::std::string& msg() const;
-  inline void set_msg(const ::std::string& value);
-  inline void set_msg(const char* value);
-  inline void set_msg(const char* value, size_t size);
-  inline ::std::string* mutable_msg();
-  inline ::std::string* release_msg();
-  inline void set_allocated_msg(::std::string* msg);
-  inline ::std::string* unsafe_arena_release_msg();
-  inline void unsafe_arena_set_allocated_msg(
+  const ::std::string& msg() const;
+  void set_msg(const ::std::string& value);
+  void set_msg(const char* value);
+  void set_msg(const char* value, size_t size);
+  ::std::string* mutable_msg();
+  ::std::string* release_msg();
+  void set_allocated_msg(::std::string* msg);
+  ::std::string* unsafe_arena_release_msg();
+  void unsafe_arena_set_allocated_msg(
       ::std::string* msg);
 
   // @@protoc_insertion_point(class_scope:content.CmdResponse)
@@ -734,22 +605,28 @@ class UpdatePart : public ::google::protobuf::Message {
   // accessors -------------------------------------------------------
 
   // optional .content.ContentPart part = 1;
-  inline bool has_part() const;
-  inline void clear_part();
+  bool has_part() const;
+  void clear_part();
   static const int kPartFieldNumber = 1;
-  inline const ::content::ContentPart& part() const;
-  inline ::content::ContentPart* mutable_part();
-  inline ::content::ContentPart* release_part();
-  inline void set_allocated_part(::content::ContentPart* part);
-  inline ::content::ContentPart* unsafe_arena_release_part();
-  inline void unsafe_arena_set_allocated_part(
+  private:
+  void _slow_mutable_part();
+  void _slow_set_allocated_part(
+      ::google::protobuf::Arena* message_arena, ::content::ContentPart** part);
+  ::content::ContentPart* _slow_release_part();
+  public:
+  const ::content::ContentPart& part() const;
+  ::content::ContentPart* mutable_part();
+  ::content::ContentPart* release_part();
+  void set_allocated_part(::content::ContentPart* part);
+  ::content::ContentPart* unsafe_arena_release_part();
+  void unsafe_arena_set_allocated_part(
       ::content::ContentPart* part);
 
   // optional uint32 position = 2;
-  inline void clear_position();
+  void clear_position();
   static const int kPositionFieldNumber = 2;
-  inline ::google::protobuf::uint32 position() const;
-  inline void set_position(::google::protobuf::uint32 value);
+  ::google::protobuf::uint32 position() const;
+  void set_position(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:content.UpdatePart)
  private:
@@ -774,100 +651,45 @@ class UpdatePart : public ::google::protobuf::Message {
 
 // ===================================================================
 
-// Uuid
-
-// optional sint64 least_significant_bits = 1;
-inline void Uuid::clear_least_significant_bits() {
-  least_significant_bits_ = GOOGLE_LONGLONG(0);
-}
-inline ::google::protobuf::int64 Uuid::least_significant_bits() const {
-  // @@protoc_insertion_point(field_get:content.Uuid.least_significant_bits)
-  return least_significant_bits_;
-}
-inline void Uuid::set_least_significant_bits(::google::protobuf::int64 value) {
-  
-  least_significant_bits_ = value;
-  // @@protoc_insertion_point(field_set:content.Uuid.least_significant_bits)
-}
-
-// optional sint64 most_significant_bits = 2;
-inline void Uuid::clear_most_significant_bits() {
-  most_significant_bits_ = GOOGLE_LONGLONG(0);
-}
-inline ::google::protobuf::int64 Uuid::most_significant_bits() const {
-  // @@protoc_insertion_point(field_get:content.Uuid.most_significant_bits)
-  return most_significant_bits_;
-}
-inline void Uuid::set_most_significant_bits(::google::protobuf::int64 value) {
-  
-  most_significant_bits_ = value;
-  // @@protoc_insertion_point(field_set:content.Uuid.most_significant_bits)
-}
-
-// -------------------------------------------------------------------
-
+#if !PROTOBUF_INLINE_NOT_IN_HEADERS
 // ContentData
 
-// optional .content.Uuid id = 1;
+// optional .common.Uuid id = 1;
 inline bool ContentData::has_id() const {
   return !_is_default_instance_ && id_ != NULL;
 }
 inline void ContentData::clear_id() {
-  if (id_ != NULL) delete id_;
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
   id_ = NULL;
 }
-inline const ::content::Uuid& ContentData::id() const {
+inline const ::common::Uuid& ContentData::id() const {
   // @@protoc_insertion_point(field_get:content.ContentData.id)
   return id_ != NULL ? *id_ : *default_instance_->id_;
 }
-inline ::content::Uuid* ContentData::mutable_id() {
+inline ::common::Uuid* ContentData::mutable_id() {
   
   if (id_ == NULL) {
-    id_ = ::google::protobuf::Arena::CreateMessage< ::content::Uuid >(
-        GetArenaNoVirtual());
-  }
+    _slow_mutable_id();  }
   // @@protoc_insertion_point(field_mutable:content.ContentData.id)
   return id_;
 }
-inline ::content::Uuid* ContentData::release_id() {
+inline ::common::Uuid* ContentData::release_id() {
   
   if (GetArenaNoVirtual() != NULL) {
-    if (id_ == NULL) {
-      return NULL;
-    } else {
-      ::content::Uuid* temp = new ::content::Uuid;
-      temp->MergeFrom(*id_);
-      id_ = NULL;
-      return temp;
-    }
+    return _slow_release_id();
   } else {
-    ::content::Uuid* temp = id_;
+    ::common::Uuid* temp = id_;
     id_ = NULL;
     return temp;
   }
 }
-inline ::content::Uuid* ContentData::unsafe_arena_release_id() {
-  
-  ::content::Uuid* temp = id_;
-  id_ = NULL;
-  return temp;
-}
-inline void ContentData::set_allocated_id(::content::Uuid* id) {
-  if (GetArenaNoVirtual() == NULL) {
+inline void ContentData::set_allocated_id(::common::Uuid* id) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
     delete id_;
   }
   if (id != NULL) {
-    if (GetArenaNoVirtual() != NULL && 
-        ::google::protobuf::Arena::GetArena(id) == NULL) {
-      GetArenaNoVirtual()->Own(id);
-    } else if (GetArenaNoVirtual() !=
-               ::google::protobuf::Arena::GetArena(id)) {
-      ::content::Uuid* new_id = 
-            ::google::protobuf::Arena::CreateMessage< ::content::Uuid >(
-            GetArenaNoVirtual());
-      new_id->CopyFrom(*id);
-      id = new_id;
-    }
+    _slow_set_allocated_id(message_arena, &id);
   }
   id_ = id;
   if (id) {
@@ -876,19 +698,6 @@ inline void ContentData::set_allocated_id(::content::Uuid* id) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:content.ContentData.id)
-}
-inline void ContentData::unsafe_arena_set_allocated_id(
-    ::content::Uuid* id) {
-  if (GetArenaNoVirtual() == NULL) {
-    delete id_;
-  }
-  id_ = id;
-  if (id) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:content.ContentData.id)
 }
 
 // optional string title = 2;
@@ -950,37 +759,36 @@ inline void ContentData::unsafe_arena_set_allocated_title(
   } else {
     
   }
-  
   title_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       title, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:content.ContentData.title)
 }
 
-// repeated .content.Uuid authors = 3;
+// repeated .common.Uuid authors = 3;
 inline int ContentData::authors_size() const {
   return authors_.size();
 }
 inline void ContentData::clear_authors() {
   authors_.Clear();
 }
-inline const ::content::Uuid& ContentData::authors(int index) const {
+inline const ::common::Uuid& ContentData::authors(int index) const {
   // @@protoc_insertion_point(field_get:content.ContentData.authors)
   return authors_.Get(index);
 }
-inline ::content::Uuid* ContentData::mutable_authors(int index) {
+inline ::common::Uuid* ContentData::mutable_authors(int index) {
   // @@protoc_insertion_point(field_mutable:content.ContentData.authors)
   return authors_.Mutable(index);
 }
-inline ::content::Uuid* ContentData::add_authors() {
+inline ::common::Uuid* ContentData::add_authors() {
   // @@protoc_insertion_point(field_add:content.ContentData.authors)
   return authors_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::content::Uuid >&
+inline const ::google::protobuf::RepeatedPtrField< ::common::Uuid >&
 ContentData::authors() const {
   // @@protoc_insertion_point(field_list:content.ContentData.authors)
   return authors_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::content::Uuid >*
+inline ::google::protobuf::RepeatedPtrField< ::common::Uuid >*
 ContentData::mutable_authors() {
   // @@protoc_insertion_point(field_mutable_list:content.ContentData.authors)
   return &authors_;
@@ -995,7 +803,7 @@ inline bool ContentPart::has_info() const {
   return !_is_default_instance_ && info_ != NULL;
 }
 inline void ContentPart::clear_info() {
-  if (info_ != NULL) delete info_;
+  if (GetArenaNoVirtual() == NULL && info_ != NULL) delete info_;
   info_ = NULL;
 }
 inline const ::content::ContentData& ContentPart::info() const {
@@ -1005,51 +813,27 @@ inline const ::content::ContentData& ContentPart::info() const {
 inline ::content::ContentData* ContentPart::mutable_info() {
   
   if (info_ == NULL) {
-    info_ = ::google::protobuf::Arena::CreateMessage< ::content::ContentData >(
-        GetArenaNoVirtual());
-  }
+    _slow_mutable_info();  }
   // @@protoc_insertion_point(field_mutable:content.ContentPart.info)
   return info_;
 }
 inline ::content::ContentData* ContentPart::release_info() {
   
   if (GetArenaNoVirtual() != NULL) {
-    if (info_ == NULL) {
-      return NULL;
-    } else {
-      ::content::ContentData* temp = new ::content::ContentData;
-      temp->MergeFrom(*info_);
-      info_ = NULL;
-      return temp;
-    }
+    return _slow_release_info();
   } else {
     ::content::ContentData* temp = info_;
     info_ = NULL;
     return temp;
   }
 }
-inline ::content::ContentData* ContentPart::unsafe_arena_release_info() {
-  
-  ::content::ContentData* temp = info_;
-  info_ = NULL;
-  return temp;
-}
 inline void ContentPart::set_allocated_info(::content::ContentData* info) {
-  if (GetArenaNoVirtual() == NULL) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
     delete info_;
   }
   if (info != NULL) {
-    if (GetArenaNoVirtual() != NULL && 
-        ::google::protobuf::Arena::GetArena(info) == NULL) {
-      GetArenaNoVirtual()->Own(info);
-    } else if (GetArenaNoVirtual() !=
-               ::google::protobuf::Arena::GetArena(info)) {
-      ::content::ContentData* new_info = 
-            ::google::protobuf::Arena::CreateMessage< ::content::ContentData >(
-            GetArenaNoVirtual());
-      new_info->CopyFrom(*info);
-      info = new_info;
-    }
+    _slow_set_allocated_info(message_arena, &info);
   }
   info_ = info;
   if (info) {
@@ -1059,29 +843,16 @@ inline void ContentPart::set_allocated_info(::content::ContentData* info) {
   }
   // @@protoc_insertion_point(field_set_allocated:content.ContentPart.info)
 }
-inline void ContentPart::unsafe_arena_set_allocated_info(
-    ::content::ContentData* info) {
-  if (GetArenaNoVirtual() == NULL) {
-    delete info_;
-  }
-  info_ = info;
-  if (info) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:content.ContentPart.info)
-}
 
-// optional .content.Format format = 2;
+// optional .common.Format format = 2;
 inline void ContentPart::clear_format() {
   format_ = 0;
 }
-inline ::content::Format ContentPart::format() const {
+inline ::common::Format ContentPart::format() const {
   // @@protoc_insertion_point(field_get:content.ContentPart.format)
-  return static_cast< ::content::Format >(format_);
+  return static_cast< ::common::Format >(format_);
 }
-inline void ContentPart::set_format(::content::Format value) {
+inline void ContentPart::set_format(::common::Format value) {
   
   format_ = value;
   // @@protoc_insertion_point(field_set:content.ContentPart.format)
@@ -1146,7 +917,6 @@ inline void ContentPart::unsafe_arena_set_allocated_data(
   } else {
     
   }
-  
   data_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       data, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:content.ContentPart.data)
@@ -1161,7 +931,7 @@ inline bool Content::has_info() const {
   return !_is_default_instance_ && info_ != NULL;
 }
 inline void Content::clear_info() {
-  if (info_ != NULL) delete info_;
+  if (GetArenaNoVirtual() == NULL && info_ != NULL) delete info_;
   info_ = NULL;
 }
 inline const ::content::ContentData& Content::info() const {
@@ -1171,51 +941,27 @@ inline const ::content::ContentData& Content::info() const {
 inline ::content::ContentData* Content::mutable_info() {
   
   if (info_ == NULL) {
-    info_ = ::google::protobuf::Arena::CreateMessage< ::content::ContentData >(
-        GetArenaNoVirtual());
-  }
+    _slow_mutable_info();  }
   // @@protoc_insertion_point(field_mutable:content.Content.info)
   return info_;
 }
 inline ::content::ContentData* Content::release_info() {
   
   if (GetArenaNoVirtual() != NULL) {
-    if (info_ == NULL) {
-      return NULL;
-    } else {
-      ::content::ContentData* temp = new ::content::ContentData;
-      temp->MergeFrom(*info_);
-      info_ = NULL;
-      return temp;
-    }
+    return _slow_release_info();
   } else {
     ::content::ContentData* temp = info_;
     info_ = NULL;
     return temp;
   }
 }
-inline ::content::ContentData* Content::unsafe_arena_release_info() {
-  
-  ::content::ContentData* temp = info_;
-  info_ = NULL;
-  return temp;
-}
 inline void Content::set_allocated_info(::content::ContentData* info) {
-  if (GetArenaNoVirtual() == NULL) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
     delete info_;
   }
   if (info != NULL) {
-    if (GetArenaNoVirtual() != NULL && 
-        ::google::protobuf::Arena::GetArena(info) == NULL) {
-      GetArenaNoVirtual()->Own(info);
-    } else if (GetArenaNoVirtual() !=
-               ::google::protobuf::Arena::GetArena(info)) {
-      ::content::ContentData* new_info = 
-            ::google::protobuf::Arena::CreateMessage< ::content::ContentData >(
-            GetArenaNoVirtual());
-      new_info->CopyFrom(*info);
-      info = new_info;
-    }
+    _slow_set_allocated_info(message_arena, &info);
   }
   info_ = info;
   if (info) {
@@ -1224,19 +970,6 @@ inline void Content::set_allocated_info(::content::ContentData* info) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:content.Content.info)
-}
-inline void Content::unsafe_arena_set_allocated_info(
-    ::content::ContentData* info) {
-  if (GetArenaNoVirtual() == NULL) {
-    delete info_;
-  }
-  info_ = info;
-  if (info) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:content.Content.info)
 }
 
 // repeated .content.ContentPart parts = 2;
@@ -1332,21 +1065,20 @@ inline void CmdResponse::unsafe_arena_set_allocated_path(
   } else {
     
   }
-  
   path_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       path, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:content.CmdResponse.path)
 }
 
-// optional .content.Level level = 2;
+// optional .common.Level level = 2;
 inline void CmdResponse::clear_level() {
   level_ = 0;
 }
-inline ::content::Level CmdResponse::level() const {
+inline ::common::Level CmdResponse::level() const {
   // @@protoc_insertion_point(field_get:content.CmdResponse.level)
-  return static_cast< ::content::Level >(level_);
+  return static_cast< ::common::Level >(level_);
 }
-inline void CmdResponse::set_level(::content::Level value) {
+inline void CmdResponse::set_level(::common::Level value) {
   
   level_ = value;
   // @@protoc_insertion_point(field_set:content.CmdResponse.level)
@@ -1411,7 +1143,6 @@ inline void CmdResponse::unsafe_arena_set_allocated_msg(
   } else {
     
   }
-  
   msg_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       msg, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:content.CmdResponse.msg)
@@ -1426,7 +1157,7 @@ inline bool UpdatePart::has_part() const {
   return !_is_default_instance_ && part_ != NULL;
 }
 inline void UpdatePart::clear_part() {
-  if (part_ != NULL) delete part_;
+  if (GetArenaNoVirtual() == NULL && part_ != NULL) delete part_;
   part_ = NULL;
 }
 inline const ::content::ContentPart& UpdatePart::part() const {
@@ -1436,51 +1167,27 @@ inline const ::content::ContentPart& UpdatePart::part() const {
 inline ::content::ContentPart* UpdatePart::mutable_part() {
   
   if (part_ == NULL) {
-    part_ = ::google::protobuf::Arena::CreateMessage< ::content::ContentPart >(
-        GetArenaNoVirtual());
-  }
+    _slow_mutable_part();  }
   // @@protoc_insertion_point(field_mutable:content.UpdatePart.part)
   return part_;
 }
 inline ::content::ContentPart* UpdatePart::release_part() {
   
   if (GetArenaNoVirtual() != NULL) {
-    if (part_ == NULL) {
-      return NULL;
-    } else {
-      ::content::ContentPart* temp = new ::content::ContentPart;
-      temp->MergeFrom(*part_);
-      part_ = NULL;
-      return temp;
-    }
+    return _slow_release_part();
   } else {
     ::content::ContentPart* temp = part_;
     part_ = NULL;
     return temp;
   }
 }
-inline ::content::ContentPart* UpdatePart::unsafe_arena_release_part() {
-  
-  ::content::ContentPart* temp = part_;
-  part_ = NULL;
-  return temp;
-}
 inline void UpdatePart::set_allocated_part(::content::ContentPart* part) {
-  if (GetArenaNoVirtual() == NULL) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
     delete part_;
   }
   if (part != NULL) {
-    if (GetArenaNoVirtual() != NULL && 
-        ::google::protobuf::Arena::GetArena(part) == NULL) {
-      GetArenaNoVirtual()->Own(part);
-    } else if (GetArenaNoVirtual() !=
-               ::google::protobuf::Arena::GetArena(part)) {
-      ::content::ContentPart* new_part = 
-            ::google::protobuf::Arena::CreateMessage< ::content::ContentPart >(
-            GetArenaNoVirtual());
-      new_part->CopyFrom(*part);
-      part = new_part;
-    }
+    _slow_set_allocated_part(message_arena, &part);
   }
   part_ = part;
   if (part) {
@@ -1489,19 +1196,6 @@ inline void UpdatePart::set_allocated_part(::content::ContentPart* part) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:content.UpdatePart.part)
-}
-inline void UpdatePart::unsafe_arena_set_allocated_part(
-    ::content::ContentPart* part) {
-  if (GetArenaNoVirtual() == NULL) {
-    delete part_;
-  }
-  part_ = part;
-  if (part) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:content.UpdatePart.part)
 }
 
 // optional uint32 position = 2;
@@ -1518,29 +1212,19 @@ inline void UpdatePart::set_position(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:content.UpdatePart.position)
 }
 
+#endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace content
-
-#ifndef SWIG
-namespace google {
-namespace protobuf {
-
-template <> struct is_proto_enum< ::content::Format> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::content::Format>() {
-  return ::content::Format_descriptor();
-}
-template <> struct is_proto_enum< ::content::Level> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::content::Level>() {
-  return ::content::Level_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
-#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

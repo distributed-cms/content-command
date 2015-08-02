@@ -9,6 +9,7 @@ executable('content-command', 'main.cpp', 'ServerRunner.cpp', 'ContentCmdHandler
 
 
 # Build protocol buffers files
+run_target('protogen_base', 'protos/build.proto.sh', 'protos', 'base.proto', '.')
 run_target('protogen', 'protos/build.proto.sh', 'protos', 'content.proto', '.')
 
 # Tests

@@ -36,70 +36,82 @@ ContentCmdHandler::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& 
   return ::grpc::BlockingUnaryCall(channel(), rpcmethod_save_, context, request, response);
 }
 
-std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> ContentCmdHandler::Stub::Asyncsave(::grpc::ClientContext* context, const ::content::Content& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_save_, context, request, tag));
+::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* ContentCmdHandler::Stub::AsyncsaveRaw(::grpc::ClientContext* context, const ::content::Content& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_save_, context, request);
 }
 
-::grpc::Status ContentCmdHandler::Stub::remove(::grpc::ClientContext* context, const ::content::Uuid& request, ::content::CmdResponse* response) {
+::grpc::Status ContentCmdHandler::Stub::remove(::grpc::ClientContext* context, const ::common::Uuid& request, ::content::CmdResponse* response) {
   return ::grpc::BlockingUnaryCall(channel(), rpcmethod_remove_, context, request, response);
 }
 
-std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> ContentCmdHandler::Stub::Asyncremove(::grpc::ClientContext* context, const ::content::Uuid& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_remove_, context, request, tag));
+::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* ContentCmdHandler::Stub::AsyncremoveRaw(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_remove_, context, request);
 }
 
-::grpc::Status ContentCmdHandler::Stub::removePart(::grpc::ClientContext* context, const ::content::Uuid& request, ::content::CmdResponse* response) {
+::grpc::Status ContentCmdHandler::Stub::removePart(::grpc::ClientContext* context, const ::common::Uuid& request, ::content::CmdResponse* response) {
   return ::grpc::BlockingUnaryCall(channel(), rpcmethod_removePart_, context, request, response);
 }
 
-std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> ContentCmdHandler::Stub::AsyncremovePart(::grpc::ClientContext* context, const ::content::Uuid& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_removePart_, context, request, tag));
+::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* ContentCmdHandler::Stub::AsyncremovePartRaw(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_removePart_, context, request);
 }
 
 ::grpc::Status ContentCmdHandler::Stub::updatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::content::CmdResponse* response) {
   return ::grpc::BlockingUnaryCall(channel(), rpcmethod_updatePart_, context, request, response);
 }
 
-std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> ContentCmdHandler::Stub::AsyncupdatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_updatePart_, context, request, tag));
+::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* ContentCmdHandler::Stub::AsyncupdatePartRaw(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>(channel(), cq, rpcmethod_updatePart_, context, request);
 }
 
-ContentCmdHandler::AsyncService::AsyncService(::grpc::CompletionQueue* cq) : ::grpc::AsynchronousService(cq, ContentCmdHandler_method_names, 4) {}
+ContentCmdHandler::AsyncService::AsyncService() : ::grpc::AsynchronousService(ContentCmdHandler_method_names, 4) {}
 
 ContentCmdHandler::Service::~Service() {
   delete service_;
 }
 
 ::grpc::Status ContentCmdHandler::Service::save(::grpc::ServerContext* context, const ::content::Content* request, ::content::CmdResponse* response) {
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED);
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-void ContentCmdHandler::AsyncService::Requestsave(::grpc::ServerContext* context, ::content::Content* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void* tag) {
-  AsynchronousService::RequestAsyncUnary(0, context, request, response, cq, tag);
+void ContentCmdHandler::AsyncService::Requestsave(::grpc::ServerContext* context, ::content::Content* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  AsynchronousService::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
 }
 
-::grpc::Status ContentCmdHandler::Service::remove(::grpc::ServerContext* context, const ::content::Uuid* request, ::content::CmdResponse* response) {
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED);
+::grpc::Status ContentCmdHandler::Service::remove(::grpc::ServerContext* context, const ::common::Uuid* request, ::content::CmdResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-void ContentCmdHandler::AsyncService::Requestremove(::grpc::ServerContext* context, ::content::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void* tag) {
-  AsynchronousService::RequestAsyncUnary(1, context, request, response, cq, tag);
+void ContentCmdHandler::AsyncService::Requestremove(::grpc::ServerContext* context, ::common::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  AsynchronousService::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
 }
 
-::grpc::Status ContentCmdHandler::Service::removePart(::grpc::ServerContext* context, const ::content::Uuid* request, ::content::CmdResponse* response) {
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED);
+::grpc::Status ContentCmdHandler::Service::removePart(::grpc::ServerContext* context, const ::common::Uuid* request, ::content::CmdResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-void ContentCmdHandler::AsyncService::RequestremovePart(::grpc::ServerContext* context, ::content::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void* tag) {
-  AsynchronousService::RequestAsyncUnary(2, context, request, response, cq, tag);
+void ContentCmdHandler::AsyncService::RequestremovePart(::grpc::ServerContext* context, ::common::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  AsynchronousService::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
 }
 
 ::grpc::Status ContentCmdHandler::Service::updatePart(::grpc::ServerContext* context, const ::content::UpdatePart* request, ::content::CmdResponse* response) {
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED);
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-void ContentCmdHandler::AsyncService::RequestupdatePart(::grpc::ServerContext* context, ::content::UpdatePart* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void* tag) {
-  AsynchronousService::RequestAsyncUnary(3, context, request, response, cq, tag);
+void ContentCmdHandler::AsyncService::RequestupdatePart(::grpc::ServerContext* context, ::content::UpdatePart* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  AsynchronousService::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
 }
 
 ::grpc::RpcService* ContentCmdHandler::Service::service() {
@@ -111,26 +123,22 @@ void ContentCmdHandler::AsyncService::RequestupdatePart(::grpc::ServerContext* c
       ContentCmdHandler_method_names[0],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< ContentCmdHandler::Service, ::content::Content, ::content::CmdResponse>(
-          std::mem_fn(&ContentCmdHandler::Service::save), this),
-      new ::content::Content, new ::content::CmdResponse));
+          std::mem_fn(&ContentCmdHandler::Service::save), this)));
   service_->AddMethod(new ::grpc::RpcServiceMethod(
       ContentCmdHandler_method_names[1],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< ContentCmdHandler::Service, ::content::Uuid, ::content::CmdResponse>(
-          std::mem_fn(&ContentCmdHandler::Service::remove), this),
-      new ::content::Uuid, new ::content::CmdResponse));
+      new ::grpc::RpcMethodHandler< ContentCmdHandler::Service, ::common::Uuid, ::content::CmdResponse>(
+          std::mem_fn(&ContentCmdHandler::Service::remove), this)));
   service_->AddMethod(new ::grpc::RpcServiceMethod(
       ContentCmdHandler_method_names[2],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< ContentCmdHandler::Service, ::content::Uuid, ::content::CmdResponse>(
-          std::mem_fn(&ContentCmdHandler::Service::removePart), this),
-      new ::content::Uuid, new ::content::CmdResponse));
+      new ::grpc::RpcMethodHandler< ContentCmdHandler::Service, ::common::Uuid, ::content::CmdResponse>(
+          std::mem_fn(&ContentCmdHandler::Service::removePart), this)));
   service_->AddMethod(new ::grpc::RpcServiceMethod(
       ContentCmdHandler_method_names[3],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< ContentCmdHandler::Service, ::content::UpdatePart, ::content::CmdResponse>(
-          std::mem_fn(&ContentCmdHandler::Service::updatePart), this),
-      new ::content::UpdatePart, new ::content::CmdResponse));
+          std::mem_fn(&ContentCmdHandler::Service::updatePart), this)));
   return service_;
 }
 

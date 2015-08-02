@@ -8,34 +8,74 @@
 
 #include <grpc++/impl/internal_stub.h>
 #include <grpc++/impl/rpc_method.h>
+#include <grpc++/impl/proto_utils.h>
 #include <grpc++/impl/service_type.h>
+#include <grpc++/async_unary_call.h>
 #include <grpc++/status.h>
+#include <grpc++/stream.h>
 
 namespace grpc {
 class CompletionQueue;
 class ChannelInterface;
 class RpcService;
+class ServerCompletionQueue;
 class ServerContext;
-template <class OutMessage> class ClientAsyncResponseReader;
-template <class OutMessage> class ServerAsyncResponseWriter;
 }  // namespace grpc
 
 namespace content {
 
 class ContentCmdHandler GRPC_FINAL {
  public:
-  class Stub GRPC_FINAL : public ::grpc::InternalStub {
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status save(::grpc::ClientContext* context, const ::content::Content& request, ::content::CmdResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>> Asyncsave(::grpc::ClientContext* context, const ::content::Content& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>>(AsyncsaveRaw(context, request, cq));
+    }
+    virtual ::grpc::Status remove(::grpc::ClientContext* context, const ::common::Uuid& request, ::content::CmdResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>> Asyncremove(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>>(AsyncremoveRaw(context, request, cq));
+    }
+    virtual ::grpc::Status removePart(::grpc::ClientContext* context, const ::common::Uuid& request, ::content::CmdResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>> AsyncremovePart(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>>(AsyncremovePartRaw(context, request, cq));
+    }
+    virtual ::grpc::Status updatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::content::CmdResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>> AsyncupdatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>>(AsyncupdatePartRaw(context, request, cq));
+    }
+  private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>* AsyncsaveRaw(::grpc::ClientContext* context, const ::content::Content& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>* AsyncremoveRaw(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>* AsyncremovePartRaw(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::content::CmdResponse>* AsyncupdatePartRaw(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub GRPC_FINAL : public StubInterface, public ::grpc::InternalStub {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status save(::grpc::ClientContext* context, const ::content::Content& request, ::content::CmdResponse* response);
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> Asyncsave(::grpc::ClientContext* context, const ::content::Content& request, ::grpc::CompletionQueue* cq, void* tag);
-    ::grpc::Status remove(::grpc::ClientContext* context, const ::content::Uuid& request, ::content::CmdResponse* response);
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> Asyncremove(::grpc::ClientContext* context, const ::content::Uuid& request, ::grpc::CompletionQueue* cq, void* tag);
-    ::grpc::Status removePart(::grpc::ClientContext* context, const ::content::Uuid& request, ::content::CmdResponse* response);
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> AsyncremovePart(::grpc::ClientContext* context, const ::content::Uuid& request, ::grpc::CompletionQueue* cq, void* tag);
-    ::grpc::Status updatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::content::CmdResponse* response);
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> AsyncupdatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::grpc::CompletionQueue* cq, void* tag);
+    ::grpc::Status save(::grpc::ClientContext* context, const ::content::Content& request, ::content::CmdResponse* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> Asyncsave(::grpc::ClientContext* context, const ::content::Content& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(AsyncsaveRaw(context, request, cq));
+    }
+    ::grpc::Status remove(::grpc::ClientContext* context, const ::common::Uuid& request, ::content::CmdResponse* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> Asyncremove(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(AsyncremoveRaw(context, request, cq));
+    }
+    ::grpc::Status removePart(::grpc::ClientContext* context, const ::common::Uuid& request, ::content::CmdResponse* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> AsyncremovePart(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(AsyncremovePartRaw(context, request, cq));
+    }
+    ::grpc::Status updatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::content::CmdResponse* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>> AsyncupdatePart(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>>(AsyncupdatePartRaw(context, request, cq));
+    }
+
    private:
+    ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* AsyncsaveRaw(::grpc::ClientContext* context, const ::content::Content& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* AsyncremoveRaw(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* AsyncremovePartRaw(::grpc::ClientContext* context, const ::common::Uuid& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncResponseReader< ::content::CmdResponse>* AsyncupdatePartRaw(::grpc::ClientContext* context, const ::content::UpdatePart& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     const ::grpc::RpcMethod rpcmethod_save_;
     const ::grpc::RpcMethod rpcmethod_remove_;
     const ::grpc::RpcMethod rpcmethod_removePart_;
@@ -48,8 +88,8 @@ class ContentCmdHandler GRPC_FINAL {
     Service() : service_(nullptr) {}
     virtual ~Service();
     virtual ::grpc::Status save(::grpc::ServerContext* context, const ::content::Content* request, ::content::CmdResponse* response);
-    virtual ::grpc::Status remove(::grpc::ServerContext* context, const ::content::Uuid* request, ::content::CmdResponse* response);
-    virtual ::grpc::Status removePart(::grpc::ServerContext* context, const ::content::Uuid* request, ::content::CmdResponse* response);
+    virtual ::grpc::Status remove(::grpc::ServerContext* context, const ::common::Uuid* request, ::content::CmdResponse* response);
+    virtual ::grpc::Status removePart(::grpc::ServerContext* context, const ::common::Uuid* request, ::content::CmdResponse* response);
     virtual ::grpc::Status updatePart(::grpc::ServerContext* context, const ::content::UpdatePart* request, ::content::CmdResponse* response);
     ::grpc::RpcService* service() GRPC_OVERRIDE GRPC_FINAL;
    private:
@@ -57,12 +97,12 @@ class ContentCmdHandler GRPC_FINAL {
   };
   class AsyncService GRPC_FINAL : public ::grpc::AsynchronousService {
    public:
-    explicit AsyncService(::grpc::CompletionQueue* cq);
+    explicit AsyncService();
     ~AsyncService() {};
-    void Requestsave(::grpc::ServerContext* context, ::content::Content* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void *tag);
-    void Requestremove(::grpc::ServerContext* context, ::content::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void *tag);
-    void RequestremovePart(::grpc::ServerContext* context, ::content::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void *tag);
-    void RequestupdatePart(::grpc::ServerContext* context, ::content::UpdatePart* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* cq, void *tag);
+    void Requestsave(::grpc::ServerContext* context, ::content::Content* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag);
+    void Requestremove(::grpc::ServerContext* context, ::common::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag);
+    void RequestremovePart(::grpc::ServerContext* context, ::common::Uuid* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag);
+    void RequestupdatePart(::grpc::ServerContext* context, ::content::UpdatePart* request, ::grpc::ServerAsyncResponseWriter< ::content::CmdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag);
   };
 };
 

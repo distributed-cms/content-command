@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
   libtool \
   make \
   meson \
+  libzmq3-dev \
   unzip && apt-get clean
 
 RUN git clone https://github.com/grpc/grpc.git /var/local/git/grpc
