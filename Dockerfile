@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
   libgflags-dev \
   libtool \
   make \
-  scons \
+  meson \
   unzip && apt-get clean
 
 RUN git clone https://github.com/grpc/grpc.git /var/local/git/grpc
@@ -29,15 +29,16 @@ RUN cd /var/local/git/grpc/third_party/protobuf && \
 
 RUN cd /var/local/git/grpc && make install
 
-#Install cms light
+#Install content-command
 
-RUN git clone https://github.com/carlosvin/cms-light.git
-WORKDIR /cms-light
-RUN git pull
-RUN scons
+RUN git clone https://github.com/distributed-cms/content-command.git
+RUN mkdir /content-command/bin
+WORKDIR /content-command/bin
+RUN meson ../src .
+RUN ninja
 
-ENV port 10002
+ENV CMD_PORT 5000
 
-EXPOSE $port
+EXPOSE $CMD_PORT
 
-ENTRYPOINT ./content_server $port
+ENTRYPOINT ./content-command $CMD_PORT
