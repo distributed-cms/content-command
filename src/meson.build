@@ -8,5 +8,5 @@ LIBRARIES = [find_library('zmq'), find_library('grpc++'), find_library('grpc'), 
 executable('content-command', 'main.cpp', 'ServerRunner.cpp', 'ContentCmdHandlerImpl.cpp','base.grpc.pb.cc', 'base.pb.cc', 'content.grpc.pb.cc', 'content.pb.cc', dependencies : LIBRARIES)
 
 # Tests
-uuid_test = executable('uuid_test', 'test/uuid_test.cpp', 'Uuid.cpp')
-test('uuid test', uuid_test)
+#uuid_test = executable('uuid_test', 'test/uuid_test.cpp', 'Uuid.cpp')
+#test('uuid test', uuid_test)
