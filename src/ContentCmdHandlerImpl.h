@@ -25,8 +25,8 @@ public:
 	~ContentCmdHandlerImpl();
 
 	grpc::Status save(grpc::ServerContext* context, const Content* request, CmdResponse* response) override;
-	grpc::Status remove(grpc::ServerContext* context, const Uuid* request, CmdResponse* response) override;
-	grpc::Status removePart(grpc::ServerContext* context, const Uuid* request, CmdResponse* response) override;
+	grpc::Status remove(grpc::ServerContext* context, const common::Uuid* request, CmdResponse* response) override;
+	grpc::Status removePart(grpc::ServerContext* context, const common::Uuid* request, CmdResponse* response) override;
 	grpc::Status updatePart(grpc::ServerContext* context, const UpdatePart* request, CmdResponse* response) override;
 };
 

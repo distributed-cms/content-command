@@ -15,6 +15,7 @@ using grpc::ServerContext;
 using grpc::Status;
 
 using namespace std;
+using namespace common;
 
 ContentCmdHandlerImpl::ContentCmdHandlerImpl() {
 }
