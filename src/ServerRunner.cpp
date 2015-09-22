@@ -7,6 +7,7 @@
 #include <grpc++/server_context.h>
 #include <grpc++/server_credentials.h>
 #include "ServerRunner.h"
+#include "easylogging++.h"
 
 namespace content {
 
@@ -22,7 +23,9 @@ ServerRunner::ServerRunner(const string & address, const vector<SynchronousServi
 		  builder.RegisterService(s);
 	  }
 	  unique_ptr<Server> server(builder.BuildAndStart());
-	  cout << address << ": Server listening" << endl;
+
+	  LOG(INFO) << address << ": Server listening";
+
 	  server->Wait();
 }
 
