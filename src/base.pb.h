@@ -37,6 +37,7 @@ void protobuf_AddDesc_base_2eproto();
 void protobuf_AssignDesc_base_2eproto();
 void protobuf_ShutdownFile_base_2eproto();
 
+class ExecutionReport;
 class Uuid;
 class Event;
 
@@ -89,6 +90,112 @@ inline bool Level_Parse(
     Level_descriptor(), name, value);
 }
 // ===================================================================
+
+class ExecutionReport : public ::google::protobuf::Message {
+ public:
+  ExecutionReport();
+  virtual ~ExecutionReport();
+
+  ExecutionReport(const ExecutionReport& from);
+
+  inline ExecutionReport& operator=(const ExecutionReport& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ExecutionReport& default_instance();
+
+  void UnsafeArenaSwap(ExecutionReport* other);
+  void Swap(ExecutionReport* other);
+
+  // implements Message ----------------------------------------------
+
+  inline ExecutionReport* New() const { return New(NULL); }
+
+  ExecutionReport* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ExecutionReport& from);
+  void MergeFrom(const ExecutionReport& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(ExecutionReport* other);
+  protected:
+  explicit ExecutionReport(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .common.Level level = 1;
+  void clear_level();
+  static const int kLevelFieldNumber = 1;
+  ::common::Level level() const;
+  void set_level(::common::Level value);
+
+  // optional string message = 2;
+  void clear_message();
+  static const int kMessageFieldNumber = 2;
+  const ::std::string& message() const;
+  void set_message(const ::std::string& value);
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
+  ::std::string* mutable_message();
+  ::std::string* release_message();
+  void set_allocated_message(::std::string* message);
+  ::std::string* unsafe_arena_release_message();
+  void unsafe_arena_set_allocated_message(
+      ::std::string* message);
+
+  // @@protoc_insertion_point(class_scope:common.ExecutionReport)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr message_;
+  int level_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_base_2eproto();
+  friend void protobuf_AssignDesc_base_2eproto();
+  friend void protobuf_ShutdownFile_base_2eproto();
+
+  void InitAsDefaultInstance();
+  static ExecutionReport* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class Uuid : public ::google::protobuf::Message {
  public:
@@ -310,6 +417,88 @@ class Event : public ::google::protobuf::Message {
 // ===================================================================
 
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
+// ExecutionReport
+
+// optional .common.Level level = 1;
+inline void ExecutionReport::clear_level() {
+  level_ = 0;
+}
+inline ::common::Level ExecutionReport::level() const {
+  // @@protoc_insertion_point(field_get:common.ExecutionReport.level)
+  return static_cast< ::common::Level >(level_);
+}
+inline void ExecutionReport::set_level(::common::Level value) {
+  
+  level_ = value;
+  // @@protoc_insertion_point(field_set:common.ExecutionReport.level)
+}
+
+// optional string message = 2;
+inline void ExecutionReport::clear_message() {
+  message_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline const ::std::string& ExecutionReport::message() const {
+  // @@protoc_insertion_point(field_get:common.ExecutionReport.message)
+  return message_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ExecutionReport::set_message(const ::std::string& value) {
+  
+  message_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set:common.ExecutionReport.message)
+}
+inline void ExecutionReport::set_message(const char* value) {
+  
+  message_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_char:common.ExecutionReport.message)
+}
+inline void ExecutionReport::set_message(const char* value,
+    size_t size) {
+  
+  message_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_pointer:common.ExecutionReport.message)
+}
+inline ::std::string* ExecutionReport::mutable_message() {
+  
+  // @@protoc_insertion_point(field_mutable:common.ExecutionReport.message)
+  return message_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* ExecutionReport::release_message() {
+  
+  return message_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* ExecutionReport::unsafe_arena_release_message() {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return message_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
+}
+inline void ExecutionReport::set_allocated_message(::std::string* message) {
+  if (message != NULL) {
+    
+  } else {
+    
+  }
+  message_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), message,
+      GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_allocated:common.ExecutionReport.message)
+}
+inline void ExecutionReport::unsafe_arena_set_allocated_message(
+    ::std::string* message) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (message != NULL) {
+    
+  } else {
+    
+  }
+  message_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      message, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_set_allocated:common.ExecutionReport.message)
+}
+
+// -------------------------------------------------------------------
+
 // Uuid
 
 // optional sint64 least_significant_bits = 1;
@@ -455,6 +644,8 @@ inline void Event::unsafe_arena_set_allocated_serialized_data(
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

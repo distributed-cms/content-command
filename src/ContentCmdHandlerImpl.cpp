@@ -16,8 +16,9 @@ using grpc::Status;
 
 using namespace std;
 using namespace common;
+using namespace event;
 
-ContentCmdHandlerImpl::ContentCmdHandlerImpl() {
+ContentCmdHandlerImpl::ContentCmdHandlerImpl( EventStore * eventStore): m_eventStore(eventStore) {
 }
 
 ContentCmdHandlerImpl::~ContentCmdHandlerImpl (){

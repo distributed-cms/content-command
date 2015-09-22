@@ -8,20 +8,23 @@
 #ifndef CONTENT_CONTENTCMDHANDLERIMPL_H_
 #define CONTENT_CONTENTCMDHANDLERIMPL_H_
 
-//#include <grpc++/server_credentials.h>
-//#include <grpc++/server_builder.h>
-
+#include <memory>
 #include <grpc++/server.h>
 #include <grpc++/server_context.h>
 #include <grpc++/status.h>
 #include "content.grpc.pb.h"
+#include "eventbus.grpc.pb.h"
+#include "eventstore.grpc.pb.h"
 
 namespace content {
 
 class ContentCmdHandlerImpl final: public ContentCmdHandler::Service {
 
+private:
+	event::EventStore * m_eventStore;
+
 public:
-	explicit ContentCmdHandlerImpl();
+	explicit ContentCmdHandlerImpl(event::EventStore * eventStore);
 	~ContentCmdHandlerImpl();
 
 	grpc::Status save(grpc::ServerContext* context, const Content* request, CmdResponse* response) override;

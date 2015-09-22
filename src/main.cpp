@@ -3,9 +3,15 @@
 #include <string>
 
 #include <grpc/grpc.h>
+#include <grpc++/client_context.h>
+#include <grpc++/create_channel.h>
+#include <grpc++/credentials.h>
+#include <grpc++/channel_arguments.h>
+
 #include <csignal>
 
 #include "ContentCmdHandlerImpl.h"
+#include "eventstore.grpc.pb.h"
 #include "ServerRunner.h"
 #include "easylogging++.h"
 
@@ -13,6 +19,8 @@ INITIALIZE_EASYLOGGINGPP
 
 using namespace std;
 using namespace content;
+using namespace event;
+using namespace grpc;
 
 void help(char * programName)
 {
@@ -49,7 +57,15 @@ int main(int argc, char** argv) {
 
 		LOG(INFO) << "GRPC initialized";
 
-		ContentCmdHandlerImpl content_cmd_handler{};
+// TODO wrap the stub using interface EventStore
+		unique_ptr<EventStore::Stub> eventStoreStub = EventStore::NewStub(
+		    CreateChannel(
+			  	"localhost:50051",
+			  	InsecureCredentials(),
+				ChannelArguments()
+			)
+		);
+		ContentCmdHandlerImpl content_cmd_handler{eventStoreStub.get()};
 
 		ServerRunner server_runner {argv[1], {&content_cmd_handler}};
 
