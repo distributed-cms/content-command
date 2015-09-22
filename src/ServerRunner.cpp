@@ -1,9 +1,6 @@
 
 
 #include <iostream>
-#include <memory>
-#include <grpc++/server.h>
-#include <grpc++/server_builder.h>
 #include <grpc++/server_context.h>
 #include <grpc++/server_credentials.h>
 #include "ServerRunner.h"
@@ -22,11 +19,16 @@ ServerRunner::ServerRunner(const string & address, const vector<SynchronousServi
 	  for (auto s : services){
 		  builder.RegisterService(s);
 	  }
-	  unique_ptr<Server> server(builder.BuildAndStart());
+	  m_server = builder.BuildAndStart();
 
 	  LOG(INFO) << address << ": Server listening";
 
-	  server->Wait();
+	  m_server->Wait();
 }
 
+ServerRunner::~ServerRunner()
+{
+	  m_server->Shutdown();
+	  LOG(INFO) << "Server stopped";
+}
 }

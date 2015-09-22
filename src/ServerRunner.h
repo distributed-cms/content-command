@@ -8,14 +8,20 @@
 #ifndef SERVERRUNNER_H_
 #define SERVERRUNNER_H_
 
+#include <grpc++/server.h>
 #include <grpc++/server_builder.h>
 #include <vector>
+#include <memory>
 
 namespace content {
 	class ServerRunner {
+	private:
+		std::unique_ptr<grpc::Server> m_server;
+
 	public:
 		ServerRunner(const std::string & address, const std::vector<grpc::SynchronousService * > & services);
-		~ServerRunner() = default;
+		virtual ~ServerRunner();
+
 	};
 }
 #endif /* SERVERRUNNER_H_ */

@@ -6,7 +6,7 @@
  */
 
 #include "ContentCmdHandlerImpl.h"
-#include <iostream>
+#include "easylogging++.h"
 
 
 namespace content {
@@ -25,22 +25,26 @@ ContentCmdHandlerImpl::~ContentCmdHandlerImpl (){
 }
 
 Status ContentCmdHandlerImpl::save (ServerContext* context, const Content* request, CmdResponse* response){
-	cout << "save" << endl;
+	LOG(INFO) << "Save";
+
 	return Status::OK;
 }
 
 Status ContentCmdHandlerImpl::remove (ServerContext* context, const Uuid* request, CmdResponse* response){
-	cout << "remove" << endl;
+	LOG(INFO) << "Remove";
+
 	return Status::OK;
 }
 
 Status ContentCmdHandlerImpl::removePart (ServerContext* context, const Uuid* request, CmdResponse* response){
-	cout << "removePart" << endl;
+	LOG(INFO) << "Remove part";
+
 	return Status::OK;
 }
 
 Status ContentCmdHandlerImpl::updatePart (ServerContext* context, const UpdatePart* request, CmdResponse* response){
-	cout << "updatePart" << endl;
+	LOG(INFO) << "Update part";
+
 	return Status::OK;
 }
 
