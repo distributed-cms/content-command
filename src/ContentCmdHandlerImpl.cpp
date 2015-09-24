@@ -18,7 +18,7 @@ using namespace std;
 using namespace common;
 using namespace event;
 
-ContentCmdHandlerImpl::ContentCmdHandlerImpl( EventStore * eventStore): m_eventStore(eventStore) {
+ContentCmdHandlerImpl::ContentCmdHandlerImpl( EventStore::StubInterface  * eventStore): m_eventStore(eventStore) {
 }
 
 ContentCmdHandlerImpl::~ContentCmdHandlerImpl (){

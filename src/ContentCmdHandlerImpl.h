@@ -21,10 +21,10 @@ namespace content {
 class ContentCmdHandlerImpl final: public ContentCmdHandler::Service {
 
 private:
-	event::EventStore * m_eventStore;
+	event::EventStore::StubInterface * m_eventStore;
 
 public:
-	explicit ContentCmdHandlerImpl(event::EventStore * eventStore);
+	explicit ContentCmdHandlerImpl(event::EventStore::StubInterface * eventStore);
 	~ContentCmdHandlerImpl();
 
 	grpc::Status save(grpc::ServerContext* context, const Content* request, CmdResponse* response) override;
